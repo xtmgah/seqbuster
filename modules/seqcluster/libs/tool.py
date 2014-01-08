@@ -588,3 +588,21 @@ def parse_ma_file(file):
         seq_l[name]=new_s      
     f.close()
     return seq_l
+
+def code2check():
+    ####################Code to check clusters integrity###################
+    # filtered=clus_obj.clus
+    # clus_locit=clus_obj.loci
+    # for idc in filtered.keys():
+    #     print "C:%s" % idc
+    #     numloci=0
+    #     seqListTemp=()
+    #     for idl in filtered[idc].loci2seq.keys():
+    #         numloci+=1
+    #         print "#%s" % (idl)
+    #         print "##%s %s %s"  % (clus_locit[idl].chr, clus_locit[idl].start,clus_locit[idl].end)
+    #         seqListTemp=list(set(seqListTemp).union(filtered[idc].loci2seq[idl])) 
+    #     for s in seqListTemp:
+    #         print "####%s %s " % (s,clus_obj.seq[s].seq)
+    # sys.exit(1)
+    return(1)

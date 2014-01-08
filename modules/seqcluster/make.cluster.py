@@ -108,45 +108,12 @@ c = a.merge(nms=True,d=20,s=True,scores="collapse")
 print "Creating clusters"
 clus_obj=parse_merge_file(c,seq_l,MIN_SEQ)
 
-####################Code to check clusters integrity###################
-# filtered=clus_obj.clus
-# clus_locit=clus_obj.loci
-# for idc in filtered.keys():
-#     print "C:%s" % idc
-#     numloci=0
-#     seqListTemp=()
-#     for idl in filtered[idc].loci2seq.keys():
-#         numloci+=1
-#         print "#%s" % (idl)
-#         print "##%s %s %s"  % (clus_locit[idl].chr, clus_locit[idl].start,clus_locit[idl].end)
-#         seqListTemp=list(set(seqListTemp).union(filtered[idc].loci2seq[idl])) 
-#     for s in seqListTemp:
-#         print "####%s %s " % (s,clus_obj.seq[s].seq)
-# sys.exit(1)
-
 #####################reduce loci when possible#############################
 print "Reducing multi-mapping events in the network of clusters"
 setclus=reduceloci(clus_obj,MIN_SEQ,dir_out)
 #sys.exit(1)
 ###########################################################################
 
-####################Code to check clusters integrity###################
-# filtered=setclus.clus
-# clus_locit=setclus.loci
-# for idc in filtered.keys():
-#     print "C:%s" % idc
-#     numloci=0
-#     seqListTemp=()
-#     for idl in filtered[idc].loci2seq.keys():
-#         numloci+=1
-#         print "#%s" % (idl)
-#         print "##%s %s %s"  % (clus_locit[idl].chr, clus_locit[idl].start,clus_locit[idl].end)
-#         seqListTemp=list(set(seqListTemp).union(filtered[idc].loci2seq[idl])) 
-#     for s in seqListTemp:
-#         # if (s=="389564"):
-#         #     print "seq in %s" % (idc)
-#         print "####%s %s " % (s,setclus.seq[s].seq)
-# sys.exit(1)
 
 #####################create sequences overview ############################
 setclus=show_seq(setclus,options.index)
@@ -173,54 +140,12 @@ if list_files:
 
 filtered=setclus.clus
 clus_locit=setclus.loci
-# outann = open(dir_out+"/ann.tab", 'w')
 f=open(options.ffile) 
 line=f.readline()
 line=line.strip()
 cols=line.split("\t")
 samples_list=cols[2:]
 f.close
-##########################temporal output
-# outann.write("idu\tnloci\tDB\t%s\n" % '\t'.join(samples_list))
-# for idc in filtered.keys():
-#     print "C:%s" % idc
-#     line="C:%s" % idc
-#     numloci=0
-#     seqListTemp=()
-#     for idl in filtered[idc].loci2seq.keys():
-#         numloci+=1
-#         print "#%s" % (idl)
-#         print "##%s %s %s . . %s"  % (clus_locit[idl].chr, clus_locit[idl].start,clus_locit[idl].end,clus_locit[idl].strand)
-#         seqListTemp=list(set(seqListTemp).union(filtered[idc].loci2seq[idl])) 
-#     db_hits=""
-#     for db in filtered[idc].dbann.keys():
-#         db_obj=filtered[idc].dbann[db]
-#         ratio=1.0*len(db_obj.ann)/numloci
-#         print "###DB %s : %s" %(db,ratio)
-#         hits=""
-#         for idl in db_obj.ann.keys():
-#             hits="%s,%s" % (db_obj.ann[idl].name,hits)
-#         print "######name: %s" % hits
-#         if ratio>=0.6 or numloci==2:
-#             db_hits="%s;%s:%s" % (db_hits,hits,db)
-#     line="%s\t%s\t%s" % (line,numloci,db_hits)
-#     freq={}
-#     for s in seqListTemp:
-#         print "####%s %s " % (s,setclus.seq[s].seq)
-
-#         for sample in setclus.seq[s].freq.keys():
-#             if (not freq.has_key(sample)):
-#                 freq[sample]=0
-#             freq[sample]+=int(setclus.seq[s].freq[sample])
-#     freq_samples=""
-#     for sample in samples_list:
-#         print "%s:%s" % (sample,freq[sample])
-#         freq_samples="%s\t%s" % (freq_samples,freq[sample])
-#     line="%s\t%s" % (line,freq_samples)
-#     outann.write(line+"\n")
-# outann.close()
-
-#sys.exit(1)
 
 #####################creating html####################
 cmd="mkdir %s" % (dir_out+"/html")
